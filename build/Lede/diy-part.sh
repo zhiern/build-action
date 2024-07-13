@@ -3,26 +3,7 @@
 # DIY扩展二合一了，在此处可以增加插件
 # 自行拉取插件之前请SSH连接进入固件配置里面确认过没有你要的插件再单独拉取你需要的插件
 # 不要一下就拉取别人一个插件包N多插件的，多了没用，增加编译错误，自己需要的才好
-rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf package/lean/luci-app-argon-config
-rm -rf feeds/packages/lang/golang
 
-# golong 
-git clone -b main https://github.com/kenzok8/golang feeds/packages/lang/golang
-
-# argon主题
-git clone -b 18.06 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/downloads/luci-theme-argon
-
-# Mosdns
-find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
-find ./ | grep Makefile | grep mosdns | xargs rm -f
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
-
-# istoreos商店
-git clone -b main https://github.com/linkease/istore-ui package/istoreos-ui
-git clone -b main https://github.com/linkease/istore package/istoreos
 
 # 后台IP设置
 export Ipv4_ipaddr="10.0.0.1"            # 修改openwrt后台地址(填0为关闭)
@@ -93,8 +74,7 @@ export kernel_usage="stable"
 
 # 
 
-./scripts/feeds update -a
-./scripts/feeds install -a
+
 
 # 修改插件名字
 sed -i 's/"aMule设置"/"电驴下载"/g' `egrep "aMule设置" -rl ./`
